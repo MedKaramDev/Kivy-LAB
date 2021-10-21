@@ -1,0 +1,40 @@
+MyGridLayout:
+
+#<MyGridLayout>:
+    cols : 3
+    ToggleButton:
+        id: toggle
+        text : "OFF"
+        on_state : root.state_button(self)
+        size_hint : None,1
+        width : '100dp'
+    Button:
+        text: "Count"
+        on_press : root.increment()
+        disabled : not root.count_enabled
+    Label:
+        text : root.count
+        font_name : "fonts/LCD-BOLD.TTF"
+        font_size : '80dp'
+        color : 1,0,0,1
+    Switch:
+        id: my_switch
+        size_hint : None,1
+        width : '100dp'
+        on_active : root.on_switch_active(self)
+        active : True
+    Slider:
+        id : my_slider
+        min:0
+        max:100
+        value : 50
+        orientation:'vertical'
+        on_value: root.on_slider_value(self)
+        disabled : not my_switch.active
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: str(int(my_slider.value))
+        ProgressBar:
+            max : 100
+            value : my_slider.value
